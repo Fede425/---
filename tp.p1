@@ -9,6 +9,7 @@ Algoritmo Principal_main
 	Definir vacunaElegida,nombre,DiaElegido,HorarioElegido,vacuna,salida,turnos Como Cadena
 	Dimension datosPacientes[100,6],vacuna[6],horario[7],dia[5],turnos[5,8]
 	contadorPacientes = 0
+<<<<<<< HEAD
 	cargaDatos(vacuna,turnos)
 	Definir contadorVacunas Como Entero
 	Dimension contadorVacunas[6]
@@ -16,6 +17,33 @@ Algoritmo Principal_main
 		contadorVacunas[i]= 0;
 	Fin Para
 	Escribir"====================================="
+=======
+	
+	//carga vacunas.
+	vacuna[0] = "Neumococo Conjugada"
+	vacuna[1] = "Poliomelitis"
+	vacuna[2] = "Quintuple"
+	vacuna[3] = "Rotavirus"
+	vacuna[4] = "Mengicoco"
+	vacuna[5] = "Triple Viral"
+	
+	//carga horarios.
+	horario[0] = "8:00"
+	horario[1] = "8:30"
+	horario[2] = "9:00"
+	horario[3] = "9:30"
+	horario[4] = "10:00"
+	horario[5] = "10:30"
+	horario[6] = "11:00"
+	
+	//carga de dias
+	dia[0] = "Lunes"
+	dia[1] = "Martes"
+	dia[2] = "Miercoles"
+	dia[3] = "Jueves"
+	dia[4] = "Viernes"
+	
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
 	//Menu de Bienvenida.
 	Escribir "Bienvenido al vacunatorio UTN"
 	Repetir
@@ -36,7 +64,12 @@ Algoritmo Principal_main
 			3:
 				agendaDeDisponibilidad(turnos)
 			4: 
+<<<<<<< HEAD
 				ordenarPacientes(aux,tipoOrden,indiceMinimo,datosPacientes, contadorPacientes,vacuna)
+=======
+				ordenarPacientes(datosPacientes, contadorPacientes)
+				
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
 			5:  
 				///santi
 				//listados
@@ -51,6 +84,7 @@ Algoritmo Principal_main
 	Escribir"Saliendo del sistema"
 FinAlgoritmo
 
+<<<<<<< HEAD
 ///funcion1-turnoreserva.
 SubProceso turnoReserva(turnos,vacuna,datosPacientes,opcionDia,opcionHorario,opcionVacuna,contadorPacientes Por Referencia,contadorVacunas Por Referencia)
 	Definir disponibilidadVacuna Como Logico
@@ -113,6 +147,69 @@ SubProceso turnoReserva(turnos,vacuna,datosPacientes,opcionDia,opcionHorario,opc
 		Escribir"====================================="
 	Fin Si
 		
+=======
+
+
+
+///funcion1-turnoreserva.
+SubProceso turnoReserva(horario,dia,vacuna,datosPacientes,opcionDia,opcionHorario,opcionVacuna,contadorPacientes Por Referencia)
+	Definir contadorVacunas Como Entero
+	Dimension contadorVacunas[10]
+	Repetir
+		//agenda de disponibilidad
+		agendaDeDisponibilidad(horario,dia)
+		
+		//Seleccion de turno.
+		Escribir"ingrese el dia y horario que desea guardar(ejemplo 4 7) "
+		leer opcionDia, opcionHorario
+		Si opcionDia < 1 o opcionDia > 5 o opcionHorario < 1 o opcionHorario > 7 Entonces
+			Escribir"Ingreso una opcion incorrecta, por favor vuelva a ingresar"
+		FinSi
+		Si  horario[opcionHorario] == " " Entonces
+			Escribir "Ese dia no se encuentra disponible,vuelva a ingresar otro"
+		FinSi
+	Mientras Que (opcionDia < 1 o opcionDia > 5 o opcionHorario < 1 o opcionHorario > 7) o horario[opcionHorario - 1] = " "
+	Escribir "==============================================="
+	///Menu de opciones vacuna.
+	Repetir
+		Escribir"Opciones Vacuna"
+		Para i = 0 Hasta 5 con paso 1 Hacer
+			Escribir i + 1, " ", vacuna[i]
+		FinPara
+		Escribir "Seleccione una opcion"
+		Leer opcionVacuna
+		Si contadorVacunas[opcionVacuna - 1] <= 2 Entonces
+			contadorVacunas[opcionVacuna - 1] = contadorVacunas[opcionVacuna - 1] + 1
+		SiNo
+			Escribir"Vacuna No disponible"
+		FinSi
+		Si opcionVacuna < 1 o opcionVacuna > 6 Entonces
+			Escribir"ingreso una opcion no valida"
+		FinSi
+	Mientras Que (opcionVacuna >= 0 y opcionVacuna > 5) o contadorVacunas[opcionVacuna -1] >2
+	Escribir
+	//Datos de pacientes
+	Escribir"ingrese su nombre"
+	leer datosPacientes[contadorPacientes,0]
+	Escribir"ingrese su dni"
+	leer datosPacientes[contadorPacientes,1]
+	Escribir"edad"
+	leer datosPacientes[contadorPacientes,2]
+	datosPacientes[contadorPacientes,3] = vacuna[opcionVacuna - 1]
+	datosPacientes[contadorPacientes,4] = dia[opcionDia - 1]
+	datosPacientes[contadorPacientes,5] = horario[opcionHorario - 1]
+	
+	//Resumen.
+	Escribir "Resumen...."
+	Escribir "Nombre y Apellido: ",datosPacientes[contadorPacientes,0]
+	Escribir "Dni: ",datosPacientes[contadorPacientes,1]
+	Escribir "Edad: ",datosPacientes[contadorPacientes,2]
+	Escribir "Vacuna a aplicar:",datosPacientes[contadorPacientes,3]
+	Escribir "Dia turno: ",datosPacientes[contadorPacientes,4]
+	Escribir "Horario Turno: ",datospacientes[contadorPacientes,5]
+	horario[opcionHorario - 1] = " "
+	contadorPacientes = contadorPacientes + 1	
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
 FinSubProceso
 
 
@@ -124,7 +221,11 @@ SubProceso busquedaPorDni(datosPacientes)
 	encontrado = falso
 	Definir numDocumento Como cadena
 	Repetir
+<<<<<<< HEAD
 		Escribir "Ingrese el número de documento del paciente:"
+=======
+		Escribir "Ingrese el numero de documento del paciente"
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
 		leer numDocumento
 	Mientras Que longitud(numDocumento) > 8 o Longitud(numDocumento) < 6 ///?
 	Para i = 0 hasta 99 con paso 1 Hacer
@@ -146,9 +247,15 @@ SubProceso busquedaPorDni(datosPacientes)
 	Escribir"====================================="
 FinSubProceso
 
+<<<<<<< HEAD
 
 ///funcion de agenda de disponibilidad
 SubProceso agendaDeDisponibilidad(turnos)
+=======
+	
+///funcion de agenda de disponibilidad
+SubProceso agendaDeDisponibilidad(horario,dia)
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
 	Escribir"Agenda disponible del vacunatorio"
 	Para i = 0 Hasta 4 con paso 1 Hacer
 		Escribir sin saltar,i + 1,"-",turnos[i,0] " "
@@ -258,3 +365,44 @@ SubProceso cargaDatos(vacuna,turnos)
 	turnos[4,6]	= "10:30"
 	turnos[4,7] = "11:00"
 FinSubProceso
+<<<<<<< HEAD
+=======
+
+///funcion ordenar
+
+SubProceso ordenarPacientes(datosPacientes, contadorPacientes Por Referencia)
+	Definir opcionOrden Como Caracter
+	Definir aux como Cadena
+	Definir indiceMinimo como Entero
+	Escribir "ingrese /a/ si desea ordenar por edad o /b/ si desea ordenar por vacuna"
+	leer opcionOrden
+	Si opcionOrden == "a" Entonces
+		Para i = 0 Hasta contadorPacientes - 1
+			indiceMinimo = i
+			Para j = i + 1 Hasta contadorPacientes 
+				Si ConvertirANumero(datosPacientes[j, 1]) < ConvertirANumero(datosPacientes[indiceMinimo, 1]) Entonces
+					indiceMinimo = j
+				FinSi
+			FinPara
+			Para x = 0 Hasta 5 con paso 1 Hacer
+				aux = datosPacientes[i, x]
+				datosPacientes[i, x] = datosPacientes[indiceMinimo, x]
+				datosPacientes[indiceMinimo, x] = aux
+			FinPara
+		FinPara
+		Para i = 1 hasta contadorPacientes Hacer
+			Escribir Sin Saltar "Nombre Paciente: ",datosPacientes[i,0]," - "
+			Escribir Sin Saltar "Edad: ",datosPacientes[i,2]," - "
+			Escribir Sin Saltar "Vacuna a aplicar: ",datosPacientes[i,3]," - "
+			Escribir Sin saltar "Dia turno: ",datosPacientes[i,4], " - "
+			Escribir Sin saltar "Horario Turno: ",datospacientes[i,5]
+			Escribir ""
+		FinPara
+	SiNo
+		Si opcionOrden == "b" Entonces
+			///agus y santi piensen esto.
+		FinSi
+	FinSi
+FinSubproceso
+
+>>>>>>> 1a316280813fa568ed854a7e48a9fda6f798bd64
